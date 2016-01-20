@@ -13,11 +13,11 @@ neuralNet = generateNeuralNet([1 3 2]);
 
 %% Train network
 % Use non-recursive 3-layer neural network implementation.
-neuralNet = trainNeuralNetStatic(neuralNet, 10000, {
-      0,   .1,   .3,   .4,  .45,   .5,  .55,   .6,   .7,   .8,   1
-}, {
-  [1 0],[1 0],[1 0],[1 0],[1 0],[0 0],[0 1],[0 1],[0 1],[0 1],[0 1]
-});
+
+input = rand(25, 1);
+target = double([input < .5, input > .5]);
+
+neuralNet = trainNeuralNetStatic(neuralNet, 10000, input, target);
 
 
 %% Test trained network

@@ -44,17 +44,20 @@ function neuralNet = trainNeuralNetStatic(neuralNet, iterations, input, target)
     % Reset total error.
     totalError = 0;
   
+    sets = size(input, 1);
+
     % Train network using each input/targetoutput pair. 
-    for sample = 1:length(input)
-      [~, values] = applyNeuralNet(neuralNet, input{sample});
-      totalError = totalError + sum((target{sample} - values{end}).^2 / 2);
-      
+    for set = 1:sets
+      t = target(set, :); % target output regarding current input
+
+      [~, values] = applyNeuralNet(neuralNet, input(set, :));
+      totalError = totalError + sum(abs((t - values{end})))/sets;
+
       o2 = values{3}; % output values
       o1 = values{2}; % hidden layer values
       o  = values{1}; % input values
       D2 = diag(o2 .* (1 - o2)); % matrix of derivatives for output layer
       D1 = diag(o1 .* (1 - o1)); % matrix of derivatives for hidden layer
-      t = target{sample}; % target output regarding current input
       W2 = neuralNet{2}; % weights from hidden to output
       W1 = neuralNet{1}; % weights from input to hidden
       e = o2(:) - t(:); % deviation
