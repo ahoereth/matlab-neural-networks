@@ -7,8 +7,7 @@ function [output, values] = applyNeuralNet(neuralNet, input)
   % Apply neural network to input layer by layer.
   for i = 1:length(neuralNet)
     % Application of logistic function.
-    x = values{i} * neuralNet{i};
-    values{i+1} = 1./(1+exp(-(x)));
+    values{i+1} = 1./(1+exp(-( values{i} * neuralNet{i} )));
   end
 
   % Return output layer values individually.
