@@ -57,10 +57,11 @@ function neuralNet = trainNeuralNet(neuralNet, iterations, input, target)
       % Backpropagate through network -- iterate over the weight layer
       % from right to left.
       for i = length(neuralNet):-1:1;
-        out = values{i+1}; % Current weight layers original output.
+        out = values{i+1}(:); % Current weight layers original output.
         in = values{i}; % Current weight layers original input.
         
-        delta = diag(out .* (1 - out)) * e;
+        % delta = diag(out .* (1 - out)) * e(:); % Mathematical way.
+        delta = (out .* (1 - out)) .* e(:); % MATLAB way.
         e = neuralNet{i} * delta; % Next error for backpropagation.
         neuralNet{i} = neuralNet{i} - (LEARNINGRATE * delta * in)';
       end
