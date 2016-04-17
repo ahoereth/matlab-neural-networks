@@ -69,5 +69,5 @@ for j = 1:length(testData)
     networkVals(j,2) = 1/(1+exp(input2));
     input3 = weight2 * networkVals(j,2);
     networkVals(j,3) = 1/(1+exp(input3));
-    disp([num2str(testData(j)), ' network says: ' ,num2str(networkVals(j,3))]);
+    disp([num2str(testData(j)), ' network says: ', num2str(networkVals(j,3))]);
 end

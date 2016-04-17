@@ -32,9 +32,9 @@ neuralNet = generateNeuralNet([n 200 100 2]);
 
 %% Train neural network
 neuralNet = trainNeuralNet(neuralNet, 25000, [
-  d1(:)'; d2(:)'; d3(:)'; alarm(:)'; cloud(:)'; plane(:)'; camera(:)'
+  d1(:)'; d2(:)'; d3(:)'; alarm(:)'; cloud(:)'; camera(:)'
 ], [
-  [1 0]; [1 0]; [1 0]; [0 1]; [0 1]; [0 1]; [0 1]
+  [1 0]; [1 0]; [1 0]; [0 1]; [0 1]; [0 1]
 ]);
 
 
